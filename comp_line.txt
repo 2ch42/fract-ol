@@ -1,0 +1,1 @@
+gcc practice.c -Lmlx -lmlx -framework OpenGL -framework AppKit
