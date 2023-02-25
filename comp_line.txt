@@ -1,1 +1,3 @@
 gcc practice.c -Lmlx -lmlx -framework OpenGL -framework AppKit
+gcc practice_1.c libmlx.a -framework OpenGL -framework AppKit
+<mlx.h> -> "mlx/mlx.h"

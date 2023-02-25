@@ -1,14 +1,15 @@
 #include <unistd.h>
+#include "mlx/mlx.h"
 #include <stdlib.h>
-#include <mlx.h>
 
-// mlx 구조체 mlx 포인터와 생성할 win 포인터를 가지고 있다.
+
+// mlx 구조체
 typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
 }				t_vars;
 
-//이미지의 정보를 나타내는 변수를 저장한 구조체
+// image data 구조체
 typedef struct s_data
 {
 	void 	*img;
@@ -18,7 +19,20 @@ typedef struct s_data
 	int		endian;
 }		t_data;
 
-//원하는 좌표에 해당하는 주소에 color값을 넣는 함수
+//함수 선언부
+void my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int prtimage();
+int exit_hook();
+int	key_hook(int keycode, t_vars *vars);
+
+// main function!
+int main()
+{
+	prtimage();
+	return (0);
+}
+
+
 void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -26,6 +40,41 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+int prtimage()
+{
+	int		color;
+	t_vars vars;
+	t_data image;
+
+	//int img_width = 1920;
+	//int img_height = 1080;
+
+	int img_width = 1080;
+	int img_height = 720;
+
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, img_width, img_height, "Hellow World!");
+	image.img = mlx_new_image(vars.mlx, img_width, img_height); // 이미지 객체 생성
+	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian); // 이미지 주소 할당
+	for (int i = 0 ; i < img_height - 1 ; ++i)
+	{
+		for (int j = 0 ; j < img_width - 1; ++j)
+		{
+			double r = (double)(img_width - j) / (img_width - 1);
+			double g = (double)(i) / (img_height - 1);
+			double b = 1;
+			color = ((int)(64 * r) << 16) + ((int)(64 * g) << 8) + ((int)(64 * b));
+			my_mlx_pixel_put(&image, j, i, color);
+		}	
+	}
+	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
+	mlx_key_hook(vars.win, key_hook, &vars); // esc key press event
+	mlx_hook(vars.win, 17, 0, exit_hook, 0); // close button press event
+	mlx_loop(vars.mlx);
+	return (0);
+}
+
 
 // esc key press event
 int	key_hook(int keycode, t_vars *vars)
@@ -38,24 +87,8 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
-int main()
+// close button press event
+int exit_hook()
 {
-	t_vars vars;
-	t_data image;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 500, 500, "Hellow World!");
-	image.img = mlx_new_image(vars.mlx, 500, 500); // 이미지 객체 생성
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian); // 이미지 주소 할당
-	for (int i = 0 ; i < 500 ; i++)
-	{
-		for (int j = 0 ; j < 500 ; j++)
-		{
-			my_mlx_pixel_put(&image, i, i, 0x00FF0000);
-		}	
-	}
-	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars); // esc key press event
-	mlx_loop(vars.mlx);
-	return (0);
+	exit(0);
 }

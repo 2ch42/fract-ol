@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include <mlx.h>
+#include "mlx/mlx.h"
 #include <stdlib.h>
 
 
@@ -47,8 +47,11 @@ int prtimage()
 	t_vars vars;
 	t_data image;
 
-	int img_width = 1920;
-	int img_height = 1080;
+	//int img_width = 1920;
+	//int img_height = 1080;
+
+	int img_width = 1080;
+	int img_height = 720;
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, img_width, img_height, "Hellow World!");
@@ -61,7 +64,7 @@ int prtimage()
 			double r = (double)(img_width - j) / (img_width - 1);
 			double g = (double)(i) / (img_height - 1);
 			double b = 1;
-			color = ((int)(255.999 * r) << 16) + ((int)(255.999 * g) << 8) + ((int)(255.999 * b));
+			color = ((int)(64 * r) << 16) + ((int)(64 * g) << 8) + ((int)(64 * b));
 			my_mlx_pixel_put(&image, j, i, color);
 		}	
 	}
@@ -80,6 +83,19 @@ int	key_hook(int keycode, t_vars *vars)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(0);
+	}
+	return (0);
+}
+
+int	mouse_hook(int mousecode, t_vars *vars)
+{
+	if (mousecode == 4)//확대
+	{
+		
+	}
+	else if (mousecode == 5)//축소
+	{
+		
 	}
 	return (0);
 }
