@@ -1,14 +1,12 @@
 #include <unistd.h>
 #include <stdlib.h>
-#include <mlx.h>
+#include "mlx/mlx.h"
 
-// mlx 구조체 mlx 포인터와 생성할 win 포인터를 가지고 있다.
 typedef struct	s_vars {
 	void		*mlx;
 	void		*win;
 }				t_vars;
 
-//이미지의 정보를 나타내는 변수를 저장한 구조체
 typedef struct s_data
 {
 	void 	*img;
@@ -18,8 +16,7 @@ typedef struct s_data
 	int		endian;
 }		t_data;
 
-//원하는 좌표에 해당하는 주소에 color값을 넣는 함수
-void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -27,7 +24,20 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-// esc key press event
+/*
+int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
+{
+	if (mousecode == 4)
+	{
+
+	}
+	else if (mousecode == 5)
+	{
+		
+	}
+}
+*/
+
 int	key_hook(int keycode, t_vars *vars)
 {
 	if(keycode == 53)
@@ -38,24 +48,42 @@ int	key_hook(int keycode, t_vars *vars)
 	return (0);
 }
 
-int main()
+int exit_hook()
 {
-	t_vars vars;
-	t_data image;
+	exit(0);
+}
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 500, 500, "Hellow World!");
-	image.img = mlx_new_image(vars.mlx, 500, 500); // 이미지 객체 생성
-	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian); // 이미지 주소 할당
-	for (int i = 0 ; i < 500 ; i++)
+int	prtimage(char *set)
+{
+	if (set == "Mandelbrot")
 	{
-		for (int j = 0 ; j < 500 ; j++)
-		{
-			my_mlx_pixel_put(&image, i, i, 0x00FF0000);
-		}	
+		
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars); // esc key press event
-	mlx_loop(vars.mlx);
+}
+
+void	error_handler(int num)
+{
+	if (num == 0)
+	{
+		write(1, "Wrong Input. Try again.\n", 25);
+		write(1, "Type ./fract-ol Mandelbrot\n", 28);
+		write(1, "or ./fract-ol Julia\n", 21);
+	}
+
+}
+
+int main(int argc, char *argv[])
+{
+	if (argc != 2)
+	{
+		error_handler(0);
+		exit(0);
+	}
+	else if (argv[1] != "Mandelbro" || argv[1] != "Julia")
+	{
+		error_handler(0);
+		exit(0);
+	}
+	prtimage(argv[1]);
 	return (0);
 }
