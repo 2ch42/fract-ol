@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <math.h>
 #include "mlx/mlx.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -10,17 +11,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mandelbrot()
+void	mandelbrot(t_data *img)
 {
 	t_numset mandel;
 
-	mandel->x0 = 0;
-	mandel->y0 = 0;
-	mandel->count = 0;
+	mandel.x0 = 0;
+	mandel.y0 = 0;
+	mandel.count = 0;
 
-	while (mandel->x0 < 1920)
+	while (mandel.y0 < img.height)
 	{
-		
+		while (mandel.x0 < img.width)
+		{
+			while (mandel.count < 30)
+			{
+				mandel.y0
+			}
+			mandel.x++;
+		}
+		mandel.y++;
 	}
 
 }
@@ -36,7 +45,7 @@ void	error_handler(int num)
 	if (num == 1)
 	{
 		write(1, "Wrong Input. Try again.\n", 25);
-		write(1, "", );//should be written.
+		write(1, "Type ./", );//should be written.
 		write(1. "", );//should be written.
 	}
 }
