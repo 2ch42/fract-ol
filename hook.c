@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <
+#include "mlx/mlx.h"
 
 /*
 int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
