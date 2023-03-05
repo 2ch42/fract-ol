@@ -3,12 +3,26 @@
 #include <math.h>
 #include "mlx/mlx.h"
 
+
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+int	my_color(int count)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = 10 + count;
+	g = 63 - count;
+	b = 10 + count;
+	return ((r << 16) + (g << 8) + b);
 }
 
 void	mandelbrot(t_data *img)
@@ -25,7 +39,7 @@ void	mandelbrot(t_data *img)
 		{
 			while (mandel.count < 30)
 			{
-				mandel.y0
+				
 			}
 			mandel.x++;
 		}
