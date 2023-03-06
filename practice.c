@@ -1,84 +1,56 @@
 #include <unistd.h>
 #include <stdlib.h>
-#include <math.h>
 #include "mlx/mlx.h"
-
-
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
-
-int	my_color(int count)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = 10 + count;
-	g = 63 - count;
-	b = 10 + count;
-	return ((r << 16) + (g << 8) + b);
-}
+#include "fractol.h"
+#include <stdio.h>
 
 void	mandelbrot(t_data *img)
 {
 	t_numset mandel;
 
-	mandel.x0 = 0;
-	mandel.y0 = 0;
-	mandel.count = 0;
-
-	while (mandel.y0 < img.height)
+	mandel.b = -400;
+	while (mandel.b < 400)
 	{
-		while (mandel.x0 < img.width)
+		mandel.a = -500;
+		while (mandel.a < 500)
 		{
-			while (mandel.count < 30)
-			{
-				
-			}
-			mandel.x++;
+			mandel.x = 0;
+			mandel.y = 0;
+			my_mlx_pixel_put(img, mandel.a + 500, mandel.b + 400, my_color(mandel_get_count(&mandel)));
+			mandel.a++;
 		}
-		mandel.y++;
-	}
-
-}
-
-void	error_handler(int num)
-{
-	if (num == 0)
-	{
-		write(1, "Wrong Input. Try again.\n", 25);
-		write(1, "Type ./fract-ol Mandelbrot\n", 28);
-		write(1, "or ./fract-ol Julia\n", 21);
-	}
-	if (num == 1)
-	{
-		write(1, "Wrong Input. Try again.\n", 25);
-		write(1, "Type ./", );//should be written.
-		write(1. "", );//should be written.
+		mandel.b++;
 	}
 }
 
 int main(int argc, char *argv[])
 {
+	
+	t_vars	vars;
+	t_data	image;
+	
 	if (argc != 2)
 	{
 		error_handler(0);
 		exit(0);
 	}
-	else if (argv[1] != "Mandelbrot" || argv[1] != "Julia")
+	else if (ft_strncmp(argv[1], "Mandelbrot", 10) != 0 && ft_strncmp(argv[1], "Julia", 5) != 0)
 	{
 		error_handler(0);
 		exit(0);
 	}
-	if (argv[1] == "Mandelbrot")
-		mandelbrot();
+	
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1000, 800, "fract-ol");
+	image.img = mlx_new_image(vars.mlx, 1000, 800);
+	image.addr = mlx_get_data_addr(image.img, &image.bits_per_pixel, &image.line_length, &image.endian);
+	if (ft_strncmp(argv[1], "Mandelbrot", 10) == 0)
+		mandelbrot(&image);
+	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
+	/*
 	else if (argv[1] == "Julia")
 		julia();
+	*/
+	mlx_loop(vars.mlx);
 	return (0);
 }
