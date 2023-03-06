@@ -15,7 +15,7 @@ int	my_color(int count)
 	int	b;
 
 	r = 10 + count;
-	g = 63 - count;
+	g = 63 - 2 * count;
 	b = 10 + count;
 	return ((r << 16) + (g << 8) + b);
 }
