@@ -31,10 +31,12 @@ typedef struct s_numset
 	double	b;
 }	t_numset;
 
+int	key_hook(int keycode, t_vars *vars);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 void	error_handler(int num);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	my_color(int count);
 int	mandel_get_count(t_numset *m);
+int	exit_hook();
 
 #endif

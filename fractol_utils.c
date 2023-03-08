@@ -14,10 +14,12 @@ int	my_color(int count)
 	int	g;
 	int	b;
 
-	r = 10 + count;
+	/*r = 10 + count;
 	g = 63 - 2 * count;
 	b = 10 + count;
 	return ((r << 16) + (g << 8) + b);
+	*/
+	return (8 * count);
 }
 
 static int	check_conver(int x, int y)
@@ -36,7 +38,7 @@ int	mandel_get_count(t_numset *m)
 	{
 		if (check_conver(m->x, m->y) == 1)
 		{
-			m->tmp_x = m->x * m->x + m->y * m->y + m->a;
+			m->tmp_x = m->x * m->x - m->y * m->y + m->a;
 			m->tmp_y = 2 * m->x * m->y + m->b;
 			m->x = m->tmp_x;
 			m->y = m->tmp_y;
