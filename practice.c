@@ -4,9 +4,9 @@
 #include "fractol.h"
 #include <stdio.h>
 
-static int	conv_ab(int real_val)
+static int	conv_ab(double real_val)
 {
-	return (400 + real_val * 20);
+	return (400 + real_val * 200);
 }
 
 void	mandelbrot(t_data *img)

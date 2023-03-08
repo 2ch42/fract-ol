@@ -10,19 +10,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	my_color(int count)
 {
-	int	r;
-	int	g;
-	int	b;
-
-	/*r = 10 + count;
-	g = 63 - 2 * count;
-	b = 10 + count;
-	return ((r << 16) + (g << 8) + b);
-	*/
-	return (8 * count);
+	return (12 * count);
 }
 
-static int	check_conver(int x, int y)
+static int	check_conver(double x, double y)
 {
 	if (x * x + y * y > 4)
 		return (-1);
