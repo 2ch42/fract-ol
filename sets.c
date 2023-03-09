@@ -20,12 +20,13 @@ void	mandelbrot(t_data *img)
 	}
 }
 
+#include <stdio.h>
 void	julia(t_data *img, int val1, int val2)
 {
 	t_numset	julia;
 
-	julia.a = val1 / 1000000;
-	julia.b = val2 / 1000000;
+	julia.a = (double)val1 / 1000000;
+	julia.b = (double)val2 / 1000000;
 
 	julia.y = -2;
 	while (julia.y < 2)
@@ -33,7 +34,7 @@ void	julia(t_data *img, int val1, int val2)
 		julia.x = -2;
 		while (julia.x < 2)
 		{
-			my_mlx_pixel_put(img, conv_real(julia.x), conv_real(julia.y), my_color(mandel_get_count(&julia)));
+			my_mlx_pixel_put(img, conv_real(julia.x), conv_real(julia.y), my_color(julia_get_count(&julia)));
 			julia.x += 0.005;
 		}
 		julia.y += 0.005;

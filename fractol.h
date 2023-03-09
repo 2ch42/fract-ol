@@ -27,6 +27,8 @@ typedef struct s_numset
 	double	y;
 	double	tmp_x;
 	double	tmp_y;
+	double	jul_x;
+	double	jul_y;
 	double	a;
 	double	b;
 }	t_numset;
@@ -39,6 +41,7 @@ void	error_handler();
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	my_color(int count);
 int	mandel_get_count(t_numset *m);
+int	julia_get_count(t_numset *m);
 int	exit_hook();
 void	mandelbrot(t_data *img);
 void	julia(t_data *img, int val1, int va12);

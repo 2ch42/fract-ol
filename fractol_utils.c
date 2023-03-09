@@ -45,3 +45,26 @@ int	mandel_get_count(t_numset *m)
 	}
 	return (count);
 }
+
+int	julia_get_count(t_numset *m)
+{
+	int	count;
+
+	count = 0;
+	m->jul_x = m->x;
+	m->jul_y = m->y;
+	while (count < 30)
+	{
+		if (check_conver(m->jul_x, m->jul_y) == 1)
+		{
+			m->tmp_x = m->jul_x * m->jul_x - m->jul_y * m->jul_y + m->a;
+			m->tmp_y = 2 * m->jul_x * m->jul_y + m->b;
+			m->jul_x = m->tmp_x;
+			m->jul_y = m->tmp_y;
+			count++;
+		}
+		else
+			return (count);
+	}
+	return (count);
+}
