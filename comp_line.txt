@@ -3,3 +3,4 @@ gcc practice_1.c libmlx.a -framework OpenGL -framework AppKit
 <mlx.h> -> "mlx/mlx.h"
 gcc ft_strncmp.c error.c fractol_utils.c practice.c -Lmlx -lmlx -framework OpenGL -framework AppKit -o fract-ol
 gcc ft_strncmp.c error.c hook.c fractol_utils.c practice.c -Lmlx -lmlx -framework OpenGL -framework AppKit -o fract-ol
+gcc ft_strncmp.c error.c hook.c fractol_utils.c sets.c practice.c -Lmlx -lmlx -framework OpenGL -framework AppKit -o fract-ol

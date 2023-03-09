@@ -31,12 +31,16 @@ typedef struct s_numset
 	double	b;
 }	t_numset;
 
+int	conv_real(double real_val);
 int	key_hook(int keycode, t_vars *vars);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
-void	error_handler(int num);
+int	ft_atoi(const char *str);
+void	error_handler();
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int	my_color(int count);
 int	mandel_get_count(t_numset *m);
 int	exit_hook();
+void	mandelbrot(t_data *img);
+void	julia(t_data *img, int val1, int va12);
 
 #endif

@@ -1,5 +1,10 @@
 #include "fractol.h"
 
+int	conv_real(double real_val)
+{
+	return (400 + real_val * 200);
+}
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
