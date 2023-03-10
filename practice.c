@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	t_vars	vars;
 	t_data	image;
 	
-	if ((ft_strncmp(argv[1], "Mandelbrot", 10) != 0 && ft_strncmp(argv[1], "Julia", 5) != 0)
+	if (argc < 2 || (ft_strncmp(argv[1], "Mandelbrot", 10) != 0 && ft_strncmp(argv[1], "Julia", 5) != 0)
 			|| (ft_strncmp(argv[1], "Julia", 5) == 0 && argc!= 4))
 	{
 		error_handler();
