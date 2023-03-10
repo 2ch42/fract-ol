@@ -15,7 +15,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	my_color(int count)
 {
-	return (12 * count);
+	return ((255 << 16 | 255) - count * 8);
 }
 
 static int	check_conver(double x, double y)
@@ -30,7 +30,7 @@ int	mandel_get_count(t_numset *m)
 	int	count;
 
 	count = 0;
-	while (count < 30)
+	while (count < 100)
 	{
 		if (check_conver(m->x, m->y) == 1)
 		{
@@ -53,7 +53,7 @@ int	julia_get_count(t_numset *m)
 	count = 0;
 	m->jul_x = m->x;
 	m->jul_y = m->y;
-	while (count < 30)
+	while (count < 100)
 	{
 		if (check_conver(m->jul_x, m->jul_y) == 1)
 		{

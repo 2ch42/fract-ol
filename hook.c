@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include "mlx/mlx.h"
 #include "fractol.h"
-
 /*
-int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
+int	mouse_hook(int mousecode, int x, int y, t_vars *vars, t_data *image)
 {
 	if (mousecode == 4)
 	{
@@ -15,7 +14,6 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 	}
 }
 */
-
 int	key_hook(int keycode, t_vars *vars)
 {
 	if (keycode == 53)

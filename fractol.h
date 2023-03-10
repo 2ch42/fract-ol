@@ -34,6 +34,7 @@ typedef struct s_numset
 }	t_numset;
 
 int	conv_real(double real_val);
+int	mouse_hook(int mousecode, int x, int y, t_vars *vars);
 int	key_hook(int keycode, t_vars *vars);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int	ft_atoi(const char *str);

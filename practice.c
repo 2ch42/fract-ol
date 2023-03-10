@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
 	else if (ft_strncmp(argv[1], "Julia", 5) == 0)
 		julia(&image, ft_atoi(argv[2]), ft_atoi(argv[3]));
 	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars); // esc key press event
-	mlx_hook(vars.win, 17, 0, exit_hook, 0); // close button press event
+	//mlx_mouse_hook(vars.win, mouse_hook, &vars);
+	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_hook(vars.win, 17, 0, exit_hook, 0);
 	mlx_loop(vars.mlx);
 	return (0);
 }
