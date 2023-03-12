@@ -1,70 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/12 17:36:04 by changhyl          #+#    #+#             */
+/*   Updated: 2023/03/12 17:36:05 by changhyl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-int	conv_real(double real_val)
+double	to_real(double coor)
 {
-	return (400 + real_val * 200);
+	return (coor / 200 - 2);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
 int	my_color(int count)
 {
-	return ((255 << 16 | 255) - count * 8);
+	return ((255 << 16 | 255) - count * 15);
 }
 
-static int	check_conver(double x, double y)
+int	check_conver(double x, double y)
 {
 	if (x * x + y * y > 4)
 		return (-1);
 	return (1);
-}
-
-int	mandel_get_count(t_numset *m)
-{
-	int	count;
-
-	count = 0;
-	while (count < 100)
-	{
-		if (check_conver(m->x, m->y) == 1)
-		{
-			m->tmp_x = m->x * m->x - m->y * m->y + m->a;
-			m->tmp_y = 2 * m->x * m->y + m->b;
-			m->x = m->tmp_x;
-			m->y = m->tmp_y;
-			count++;
-		}
-		else
-			return (count);
-	}
-	return (count);
-}
-
-int	julia_get_count(t_numset *m)
-{
-	int	count;
-
-	count = 0;
-	m->jul_x = m->x;
-	m->jul_y = m->y;
-	while (count < 100)
-	{
-		if (check_conver(m->jul_x, m->jul_y) == 1)
-		{
-			m->tmp_x = m->jul_x * m->jul_x - m->jul_y * m->jul_y + m->a;
-			m->tmp_y = 2 * m->jul_x * m->jul_y + m->b;
-			m->jul_x = m->tmp_x;
-			m->jul_y = m->tmp_y;
-			count++;
-		}
-		else
-			return (count);
-	}
-	return (count);
 }

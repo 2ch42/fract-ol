@@ -8,10 +8,6 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
-}		t_vars;
-
-typedef struct s_data
-{
 	void	*img;
 	char	*addr;
 	int	img_width;
@@ -19,7 +15,7 @@ typedef struct s_data
 	int	bits_per_pixel;
 	int	line_length;
 	int	endian;
-}		t_data;
+}	t_vars;
 
 typedef struct s_numset
 {
@@ -33,18 +29,17 @@ typedef struct s_numset
 	double	b;
 }	t_numset;
 
-int	conv_real(double real_val);
-int	mouse_hook(int mousecode, int x, int y, t_vars *vars);
-int	key_hook(int keycode, t_vars *vars);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-int	ft_atoi(const char *str);
+double	to_real(double coor);
+int		mouse_hook(int mousecode, int x, int y, t_vars *vars);
+int		key_hook(int keycode, t_vars *vars);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_atoi(const char *str);
 void	error_handler();
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int	my_color(int count);
-int	mandel_get_count(t_numset *m);
-int	julia_get_count(t_numset *m);
-int	exit_hook();
-void	mandelbrot(t_data *img);
-void	julia(t_data *img, int val1, int va12);
+void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+int		my_color(int count);
+int		check_conver(double x, double y);
+int		exit_hook();
+void	mandelbrot(t_vars *img);
+void	julia(t_vars *img, int val1, int va12);
 
 #endif
