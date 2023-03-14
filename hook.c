@@ -18,12 +18,19 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 {
 	if (mousecode == 4)
 	{
-		
+		vars->max = vars->max * 1.1;
+		vars->min = vars->min * 1.1;
 	}
 	else if (mousecode == 5)
 	{
-		
+		vars->max = vars->max / 1.1;
+		vars->min = vars->max / 1.1;
 	}
+	if (vars->set == 0)
+		mandelbrot(vars);
+	else
+		julia(vars, vars->av1, vars->av2);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	return (0);
 }
 

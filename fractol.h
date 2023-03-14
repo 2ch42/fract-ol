@@ -1,5 +1,5 @@
-#ifndef FRACTAL_H
-# define FRACTAL_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -15,10 +15,8 @@ typedef struct s_vars
 	int	bits_per_pixel;
 	int	line_length;
 	int	endian;
-}	t_vars;
-
-typedef struct s_numset
-{
+	double	max;
+	double	min;
 	double	x;
 	double	y;
 	double	tmp_x;
@@ -27,9 +25,12 @@ typedef struct s_numset
 	double	jul_y;
 	double	a;
 	double	b;
-}	t_numset;
+	int	set;
+	int	av1;
+	int	av2;
+}	t_vars;
 
-double	to_real(double coor);
+double	to_real(double coor, t_vars *vars);
 int		mouse_hook(int mousecode, int x, int y, t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

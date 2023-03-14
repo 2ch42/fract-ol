@@ -12,9 +12,9 @@
 
 #include "fractol.h"
 
-double	to_real(double coor)
+double	to_real(double coor, t_vars *vars)
 {
-	return (coor / 200 - 2);
+	return (coor / 400 * vars->max - vars->max);
 }
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)

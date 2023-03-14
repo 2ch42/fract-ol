@@ -13,7 +13,7 @@
 #include "mlx/mlx.h"
 #include "fractol.h"
 
-static int	mandel_get_count(t_numset *m)
+static int	mandel_get_count(t_vars *vars)
 {
 	int		count;
 	double	x;
@@ -28,8 +28,8 @@ static int	mandel_get_count(t_numset *m)
 	{
 		if (check_conver(x, y) == 1)
 		{
-			tmp_x = x * x - y * y + to_real(m->a);
-			tmp_y = 2 * x * y + to_real(m->b);
+			tmp_x = x * x - y * y + to_real(vars->a, vars);
+			tmp_y = 2 * x * y + to_real(vars->b, vars);
 			x = tmp_x;
 			y = tmp_y;
 			count++;
@@ -40,21 +40,22 @@ static int	mandel_get_count(t_numset *m)
 	return (count);
 }
 
-static int	julia_get_count(t_numset *m)
+static int	julia_get_count(t_vars *vars)
 {
 	int	count;
 
 	count = 0;
-	m->jul_x = to_real(m->x);
-	m->jul_y = to_real(m->y);
+	vars->jul_x = to_real(vars->x, vars);
+	vars->jul_y = to_real(vars->y, vars);
 	while (count < 100)
 	{
-		if (check_conver(m->jul_x, m->jul_y) == 1)
+		if (check_conver(vars->jul_x, vars->jul_y) == 1)
 		{
-			m->tmp_x = m->jul_x * m->jul_x - m->jul_y * m->jul_y + m->a;
-			m->tmp_y = 2 * m->jul_x * m->jul_y + m->b;
-			m->jul_x = m->tmp_x;
-			m->jul_y = m->tmp_y;
+			vars->tmp_x = vars->jul_x * vars->jul_x
+				- vars->jul_y * vars->jul_y + vars->a;
+			vars->tmp_y = 2 * vars->jul_x * vars->jul_y + vars->b;
+			vars->jul_x = vars->tmp_x;
+			vars->jul_y = vars->tmp_y;
 			count++;
 		}
 		else
@@ -65,38 +66,34 @@ static int	julia_get_count(t_numset *m)
 
 void	mandelbrot(t_vars *vars)
 {
-	t_numset	mandel;
-
-	mandel.b = 0;
-	while (mandel.b < 800)
+	vars->b = 0;
+	while (vars->b < 800)
 	{
-		mandel.a = 0;
-		while (mandel.a < 800)
+		vars->a = 0;
+		while (vars->a < 800)
 		{
-			my_mlx_pixel_put(vars, mandel.a, mandel.b,
-				my_color(mandel_get_count(&mandel)));
-			mandel.a += 1;
+			my_mlx_pixel_put(vars, vars->a, vars->b,
+				my_color(mandel_get_count(vars)));
+			vars->a += 1;
 		}
-		mandel.b += 1;
+		vars->b += 1;
 	}
 }
 
 void	julia(t_vars *vars, int val1, int val2)
 {
-	t_numset	julia;
-
-	julia.a = (double)val1 / 1000000;
-	julia.b = (double)val2 / 1000000;
-	julia.y = 0;
-	while (julia.y < 800)
+	vars->a = (double)val1 / 1000000;
+	vars->b = (double)val2 / 1000000;
+	vars->y = 0;
+	while (vars->y < 800)
 	{
-		julia.x = 0;
-		while (julia.x < 800)
+		vars->x = 0;
+		while (vars->x < 800)
 		{
-			my_mlx_pixel_put(vars, julia.x, julia.y,
-				my_color(julia_get_count(&julia)));
-			julia.x += 1;
+			my_mlx_pixel_put(vars, vars->x, vars->y,
+				my_color(julia_get_count(vars)));
+			vars->x += 1;
 		}
-		julia.y += 1;
+		vars->y += 1;
 	}
 }
