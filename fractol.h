@@ -31,15 +31,15 @@ typedef struct s_vars
 }	t_vars;
 
 double	to_real(double coor, t_vars *vars);
-int		mouse_hook(int mousecode, int x, int y, t_vars *vars);
-int		key_hook(int keycode, t_vars *vars);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_atoi(const char *str);
+int	mouse_hook(int mousecode, int x, int y, t_vars *vars);
+int	key_hook(int keycode, t_vars *vars);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_atoi(const char *str);
 void	error_handler();
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
-int		my_color(int count);
-int		check_conver(double x, double y);
-int		exit_hook();
+int	my_color(int count);
+int	check_conver(double x, double y);
+int	exit_hook();
 void	mandelbrot(t_vars *img);
 void	julia(t_vars *img, int val1, int va12);
 
