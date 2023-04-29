@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:37:06 by changhyl          #+#    #+#             */
-/*   Updated: 2023/04/29 20:35:52 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:56:44 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char *argv[])
 		mandelbrot(&vars);
 	else if (ft_strncmp(argv[1], "Julia", 5) == 0)
 	{
-		vars.av1 = ft_atoi(argv[2]);
-		vars.av2 = ft_atoi(argv[3]);
+		vars.num1 = ft_atoi(argv[2]);
+		vars.num2 = ft_atoi(argv[3]);
 		vars.set = 1;
-		julia(&vars, vars.av1, vars.av2);
+		julia(&vars, vars.num1, vars.num2);
 	}
 	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0);
 	mlx_mouse_hook(vars.win, mouse_hook, &vars);

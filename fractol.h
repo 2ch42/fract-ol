@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 21:14:00 by changhyl          #+#    #+#             */
-/*   Updated: 2023/04/29 20:35:23 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:56:18 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct s_vars
 	double	a;
 	double	b;
 	int		set;
-	int		av1;
-	int		av2;
+	int		num1;
+	int		num2;
 }	t_vars;
 
 double	to_real(double coor, t_vars *vars);

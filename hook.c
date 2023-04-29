@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:36:35 by changhyl          #+#    #+#             */
-/*   Updated: 2023/04/29 20:36:18 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:57:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 	if (vars->set == 0)
 		mandelbrot(vars);
 	else
-		julia(vars, vars->av1, vars->av2);
+		julia(vars, vars->num1, vars->num2);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	x += 1;
 	y += 1;
