@@ -6,14 +6,13 @@
 /*   By: changhyl <changhyl@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 21:14:00 by changhyl          #+#    #+#             */
-/*   Updated: 2023/03/23 21:15:26 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:35:23 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <unistd.h>
 # include <stdlib.h>
 
 typedef struct s_vars

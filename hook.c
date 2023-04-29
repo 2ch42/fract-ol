@@ -6,11 +6,10 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:36:35 by changhyl          #+#    #+#             */
-/*   Updated: 2023/04/29 17:54:12 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:36:18 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "mlx/mlx.h"
 #include "fractol.h"
 
