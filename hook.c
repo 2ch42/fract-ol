@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:36:35 by changhyl          #+#    #+#             */
-/*   Updated: 2023/03/12 21:28:11 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:54:12 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 	else
 		julia(vars, vars->av1, vars->av2);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	x += 1;
+	y += 1;
 	return (0);
 }
 
