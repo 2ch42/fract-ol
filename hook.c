@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:36:35 by changhyl          #+#    #+#             */
-/*   Updated: 2023/04/29 20:57:06 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/05/11 22:01:38 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 {
-	if (mousecode == 4)
+	if (mousecode == 5)
 	{
 		vars->max = vars->max * 1.1;
 		vars->min = vars->min * 1.1;
 	}
-	else if (mousecode == 5)
+	else if (mousecode == 4)
 	{
 		vars->max = vars->max / 1.1;
 		vars->min = vars->max / 1.1;
