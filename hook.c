@@ -23,7 +23,7 @@ int	mouse_hook(int mousecode, int x, int y, t_vars *vars)
 	else if (mousecode == 4)
 	{
 		vars->max = vars->max / 1.1;
-		vars->min = vars->max / 1.1;
+		vars->min = vars->min / 1.1;
 	}
 	if (vars->set == 0)
 		mandelbrot(vars);
